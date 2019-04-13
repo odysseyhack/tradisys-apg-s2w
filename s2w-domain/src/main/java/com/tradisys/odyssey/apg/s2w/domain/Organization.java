@@ -21,6 +21,11 @@ public class Organization extends BasicPrincipal {
         this.status = status;
     }
 
+    @Override
+    public String getType() {
+        return Role.ORGANIZATION.name();
+    }
+
     public OrganizationStatus getStatus() {
         return status;
     }

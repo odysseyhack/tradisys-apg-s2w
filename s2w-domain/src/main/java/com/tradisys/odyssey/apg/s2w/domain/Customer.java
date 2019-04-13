@@ -24,6 +24,11 @@ public class Customer extends BasicPrincipal {
         this.birth = birth;
     }
 
+    @Override
+    public String getType() {
+        return Role.CUSTOMER.name();
+    }
+
     public String getFirstName() {
         return firstName;
     }
