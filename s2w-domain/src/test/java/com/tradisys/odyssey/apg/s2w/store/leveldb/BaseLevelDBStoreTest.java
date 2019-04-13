@@ -58,7 +58,7 @@ public class BaseLevelDBStoreTest {
     }
 
     @Test
-    public void t004_deleteById() {
+    public void t005_deleteById() {
         store.deleteById(1);
         List<EntityWithId<String>> fromDB = store.findAll();
         Assert.assertEquals(fromDB.size(), 0);
@@ -72,10 +72,15 @@ public class BaseLevelDBStoreTest {
     }
 
     @Test
-    public void t003_findAll() {
+    public void t004_findAll() {
         List<EntityWithId<String>> fromDB = store.findAll();
 
         Assert.assertEquals(fromDB.size(), 1);
-        Assert.assertEquals(fromDB.get(0), new EntityWithId<>("TestString", 1));
+        Assert.assertEquals(fromDB.get(0), new EntityWithId<>("UpdatedString", 1));
+    }
+
+    @Test
+    public void t003_update() {
+        store.update(1, "UpdatedString");
     }
 }

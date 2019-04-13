@@ -45,6 +45,15 @@ public abstract class BaseLevelDBStore<T extends Serializable> implements BaseSt
         return newId;
     }
 
+
+    @Override
+    public void update(int id, T t) {
+        byte[] keyBytes = Keys.fromPrefixAndId(getTablePrefix(), id);
+        byte[] valueBytes = SerializationUtils.serialize(t);
+
+        getDB().put(keyBytes, valueBytes);
+    }
+
     @Override
     public void deleteById(int id) {
         byte[] entityKey = Keys.fromPrefixAndId(getTablePrefix(), id);

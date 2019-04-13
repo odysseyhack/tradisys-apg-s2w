@@ -30,7 +30,6 @@ public class EntityWithId<T> {
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getValue(), getId());
     }
 }
