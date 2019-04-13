@@ -12,6 +12,11 @@ public class Organization extends BasicPrincipal {
     private OrganizationStatus status;
     private List<Task> tasks;
 
+    @Override
+    public String getType() {
+        return Role.ORGANIZATION.name();
+    }
+
     public OrganizationStatus getStatus() {
         return status;
     }

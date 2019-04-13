@@ -14,6 +14,11 @@ public class Customer extends BasicPrincipal {
     private Date birth;
     private List<Task> assignedTasks;
 
+    @Override
+    public String getType() {
+        return Role.CUSTOMER.name();
+    }
+
     public String getFirstName() {
         return firstName;
     }

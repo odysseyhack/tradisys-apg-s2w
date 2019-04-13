@@ -1,7 +1,9 @@
 package com.tradisys.odyssey.apg.s2w.dto;
 
+import com.tradisys.odyssey.apg.s2w.domain.BasicPrincipal;
+import com.tradisys.odyssey.apg.s2w.domain.Customer;
+import com.tradisys.odyssey.apg.s2w.domain.Role;
 import com.tradisys.odyssey.apg.s2w.services.config.ServicesSpringConfig;
-import com.tradisys.odyssey.apg.s2w.services.dto.CustomerRegDto;
 import com.tradisys.odyssey.apg.s2w.services.ser.BiDirectionMapper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -18,7 +20,8 @@ public class RegDtoJsonTest {
 
     private static final String CUSTOMER_JSON = "{" +
             "\"firstName\":\"Tradisys\"," +
-            "\"secondName\":\"APG\"" +
+            "\"secondName\":\"APG\"," +
+            "\"type\":\"CUSTOMER\"" +
             "}";
 
     @Autowired
@@ -26,9 +29,11 @@ public class RegDtoJsonTest {
 
     @Test
     public void testCustomerRegDto() throws Exception {
-        CustomerRegDto dto = mapper.mapAny(new ByteArrayInputStream(CUSTOMER_JSON.getBytes()), CustomerRegDto.class);
+        BasicPrincipal dto = mapper.mapAny(new ByteArrayInputStream(CUSTOMER_JSON.getBytes()), BasicPrincipal.class);
         Assert.assertNotNull(dto);
-        Assert.assertEquals("Tradisys", dto.getFirstName());
-        Assert.assertEquals("APG", dto.getSecondName());
+        Assert.assertEquals(Role.CUSTOMER.name(), dto.getType());
+        Customer customer = (Customer) dto;
+        Assert.assertEquals("Tradisys", customer.getFirstName());
+        Assert.assertEquals("APG", customer.getSecondName());
     }
 }
