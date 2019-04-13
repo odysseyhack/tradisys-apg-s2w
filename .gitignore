@@ -1,6 +1,9 @@
 HELP.md
-/target/
 !.mvn/wrapper/maven-wrapper.jar
+
+s2w-base/target/
+s2w-domain/target/
+s2w-web/target/
 
 ### STS ###
 .apt_generated
