@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface TaskStore extends BaseStore<Task> {
 
-    void saveAssignment(int taskId, int userId);
+    void saveAssignment(long taskId, long userId);
 
-    List<Task> findAllAssignedTo(int userId);
+    List<Task> findAllAssignedTo(long userId);
 
     List<Task> findAllCreatedBy(Organization org);
 }
