@@ -1,7 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.config;
 
 import com.google.common.io.Files;
-import com.tradisys.odyssey.apg.s2w.store.BaseStore;
 import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
 import com.tradisys.odyssey.apg.s2w.store.OrganizationStore;
 import com.tradisys.odyssey.apg.s2w.store.TaskStore;

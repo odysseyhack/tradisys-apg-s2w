@@ -1,7 +1,7 @@
 package com.tradisys.odyssey.apg.s2w.services;
 
-import com.tradisys.odyssey.apg.s2w.domain.Customer;
+import com.tradisys.odyssey.apg.s2w.domain.BasicPrincipal;
 
 public interface RegistrationService {
-    Customer register(Customer regInfo);
+    BasicPrincipal register(BasicPrincipal regInfo);
 }

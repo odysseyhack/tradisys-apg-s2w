@@ -1,8 +1,8 @@
 package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
 import com.google.common.io.Files;
+import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
-import com.tradisys.odyssey.apg.s2w.store.EntityWithId;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.Options;
 import org.junit.*;
@@ -10,6 +10,7 @@ import org.junit.runners.MethodSorters;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
 
 import static org.iq80.leveldb.impl.Iq80DBFactory.factory;
@@ -18,7 +19,7 @@ import static org.iq80.leveldb.impl.Iq80DBFactory.factory;
 public class BaseLevelDBStoreTest {
 
     protected static DB db;
-    protected static BaseStore<String> store;
+    protected static BaseStore store;
 
     @BeforeClass
     public static void beforeAll() throws IOException {
@@ -28,7 +29,7 @@ public class BaseLevelDBStoreTest {
         File dbFile = Files.createTempDir();
 
         db = factory.open(dbFile, options);
-        store = new BaseLevelDBStore<String>() {
+        store = new BaseLevelDBStore<Customer>() {
             @Override
             protected short getIdPrefix() {
                 return 1;
@@ -53,34 +54,50 @@ public class BaseLevelDBStoreTest {
 
     @Test
     public void t001_insert() {
-        int id = store.insert("TestString");
-        Assert.assertEquals(id, 1);
+        long id = store.insert(createDefaultCustomer());
+        Assert.assertEquals(id, 1l);
     }
 
     @Test
     public void t005_deleteById() {
         store.deleteById(1);
-        List<EntityWithId<String>> fromDB = store.findAll();
+        List<String> fromDB = store.findAll();
         Assert.assertEquals(fromDB.size(), 0);
     }
 
     @Test
     public void t002_findById() {
-        String fromDB = store.findById(1).get();
+        Customer fromDB = (Customer) store.findById(1).get();
 
-        Assert.assertEquals(fromDB, "TestString");
+        Assert.assertEquals("Tradisys", fromDB.getFirstName());
     }
 
     @Test
     public void t004_findAll() {
-        List<EntityWithId<String>> fromDB = store.findAll();
+        List<Customer> fromDB = store.findAll();
 
         Assert.assertEquals(fromDB.size(), 1);
-        Assert.assertEquals(fromDB.get(0), new EntityWithId<>("UpdatedString", 1));
+        Assert.assertEquals(fromDB.get(0), createDefaultCustomer());
     }
 
     @Test
     public void t003_update() {
-        store.update(1, "UpdatedString");
+        Customer customer = createDefaultCustomer();
+        customer.setId(1l);
+        store.update(customer);
+    }
+
+    private Customer createDefaultCustomer() {
+        Customer customer = new Customer();
+        customer.setFirstName("Tradisys");
+        customer.setSecondName("APG");
+        customer.setAddress("Address");
+        customer.setBsn("BSN");
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1976, 10, 10, 0, 0, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        customer.setBirth(calendar.getTime());
+        return customer;
     }
 }
