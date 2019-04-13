@@ -41,9 +41,7 @@
                 <executions>
                     <execution>
                         <id>default</id>
-                        <goals>
-                            <goal>build</goal>
-                        </goals>
+                        <phase>install</phase>
                     </execution>
                 </executions>
                 <configuration>
