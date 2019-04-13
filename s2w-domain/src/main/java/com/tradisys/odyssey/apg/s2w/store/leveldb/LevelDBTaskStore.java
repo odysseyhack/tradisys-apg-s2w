@@ -75,7 +75,7 @@ public class LevelDBTaskStore extends BaseLevelDBStore<Task> implements TaskStor
             Utils.iterateOverPrefix(db, prefix, entry -> {
                 Task task = SerializationUtils.deserialize(entry.getValue());
 
-                if (task.getCreatedBy().equals(org)) {
+                if (task.getOrganization().equals(org)) {
                     result.add(task);
                 }
             });

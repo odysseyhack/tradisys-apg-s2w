@@ -12,6 +12,7 @@ public class Customer extends BasicPrincipal {
     private String bsn;
     private String address;
     private Date birth;
+    private List<Task> tasks;
 
     public Customer() {
     }
@@ -67,6 +68,18 @@ public class Customer extends BasicPrincipal {
 
     public void setBirth(Date birth) {
         this.birth = birth;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void addTask(Task task){
+        this.tasks.add(task);
     }
 
     @Override

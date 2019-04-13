@@ -10,18 +10,18 @@ import java.util.List;
  */
 public interface TasksService {
 
-    Integer createNewTask(Task task);
+    Task createNewTask(Task task);
 
-    void updateTask(Task task);
+    void updateTask(String taskId);
 
-    void removeTask(Task task);
+    void removeTask(String taskId);
 
     List<Task> getAllTasks();
 
-    List<Task> getAllTasksByCustomer();
+    List<Task> getAllTasksByCustomer(Integer customerId);
 
-    List<Task> getAllTasksByOrganization();
+    List<Task> getAllTasksByOrganization(Integer organizationId);
 
-    void assignTask(Customer customer);
+    void assignTask(Integer taskId, Integer customerId);
 
 }

@@ -1,5 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Organization extends BasicPrincipal {
@@ -10,6 +11,7 @@ public class Organization extends BasicPrincipal {
     private String address;
     private String rsin; // similar to SSN
     private OrganizationStatus status;
+    private List<Task> tasks;
 
     public Organization() {
     }
@@ -56,6 +58,14 @@ public class Organization extends BasicPrincipal {
 
     public void setRsin(String rsin) {
         this.rsin = rsin;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

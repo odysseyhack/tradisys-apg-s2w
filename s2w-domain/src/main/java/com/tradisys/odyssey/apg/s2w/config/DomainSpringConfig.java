@@ -2,6 +2,9 @@ package com.tradisys.odyssey.apg.s2w.config;
 
 import com.google.common.io.Files;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
+import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
+import com.tradisys.odyssey.apg.s2w.store.OrganizationStore;
+import com.tradisys.odyssey.apg.s2w.store.TaskStore;
 import com.tradisys.odyssey.apg.s2w.store.leveldb.LevelDBCustomerStore;
 import com.tradisys.odyssey.apg.s2w.store.leveldb.LevelDBOrganizationStore;
 import com.tradisys.odyssey.apg.s2w.store.leveldb.LevelDBTaskStore;
@@ -33,17 +36,17 @@ public class DomainSpringConfig {
     }
 
     @Bean
-    public BaseStore customerStore(){
+    public CustomerStore customerStore(){
         return new LevelDBCustomerStore(dbStore());
     }
 
     @Bean
-    public BaseStore organizationStore(){
+    public OrganizationStore organizationStore(){
         return new LevelDBOrganizationStore(dbStore());
     }
 
     @Bean
-    public BaseStore tasksStore(){
+    public TaskStore tasksStore(){
         return new LevelDBTaskStore(dbStore());
     }
 

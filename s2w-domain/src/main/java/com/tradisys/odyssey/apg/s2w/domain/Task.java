@@ -1,5 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.domain;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Task extends BasicIdentity {
@@ -10,19 +11,38 @@ public class Task extends BasicIdentity {
     private String description;
     private Double tokenCost;
     private Double votingPoints;
-    private Organization createdBy;
+    private Organization organization;
     private TaskStatus status;
+    private Boolean isCustomerFulfilled;
+    private Boolean isOrganizationConfirmed;
+    private Customer customer;
 
     public Task() {
     }
 
-    public Task(String name, String description, Double tokenCost, Double votingPoints, Organization createdBy, TaskStatus status) {
+    public Task(String name, String description, Double tokenCost, Double votingPoints, Organization organization, TaskStatus status) {
         this.name = name;
         this.description = description;
         this.tokenCost = tokenCost;
         this.votingPoints = votingPoints;
-        this.createdBy = createdBy;
+        this.organization = organization;
         this.status = status;
+    }
+
+    public Boolean getCustomerFulfilled() {
+        return isCustomerFulfilled;
+    }
+
+    public void setCustomerFulfilled(Boolean customerFulfilled) {
+        isCustomerFulfilled = customerFulfilled;
+    }
+
+    public Boolean getOrganizationConfirmed() {
+        return isOrganizationConfirmed;
+    }
+
+    public void setOrganizationConfirmed(Boolean organizationConfirmed) {
+        isOrganizationConfirmed = organizationConfirmed;
     }
 
     public TaskStatus getStatus() {
@@ -65,12 +85,20 @@ public class Task extends BasicIdentity {
         this.votingPoints = votingPoints;
     }
 
-    public Organization getCreatedBy() {
-        return createdBy;
+    public Organization getOrganization() {
+        return organization;
     }
 
-    public void setCreatedBy(Organization createdBy) {
-        this.createdBy = createdBy;
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     @Override
@@ -82,12 +110,12 @@ public class Task extends BasicIdentity {
                 Objects.equals(getDescription(), task.getDescription()) &&
                 Objects.equals(getTokenCost(), task.getTokenCost()) &&
                 Objects.equals(getVotingPoints(), task.getVotingPoints()) &&
-                Objects.equals(getCreatedBy(), task.getCreatedBy()) &&
+                Objects.equals(getOrganization(), task.getOrganization()) &&
                 getStatus() == task.getStatus();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getDescription(), getTokenCost(), getVotingPoints(), getCreatedBy(), getStatus());
+        return Objects.hash(getName(), getDescription(), getTokenCost(), getVotingPoints(), getOrganization(), getStatus());
     }
 }
