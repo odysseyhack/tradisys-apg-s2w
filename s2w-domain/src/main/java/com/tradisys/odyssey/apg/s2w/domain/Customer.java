@@ -12,7 +12,17 @@ public class Customer extends BasicPrincipal {
     private String bsn;
     private String address;
     private Date birth;
-    private List<Task> assignedTasks;
+
+    public Customer() {
+    }
+
+    public Customer(String firstName, String secondName, String bsn, String address, Date birth) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.bsn = bsn;
+        this.address = address;
+        this.birth = birth;
+    }
 
     @Override
     public String getType() {
@@ -59,10 +69,6 @@ public class Customer extends BasicPrincipal {
         this.birth = birth;
     }
 
-    public List<Task> getAssignedTasks() {
-        return assignedTasks;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -85,9 +91,5 @@ public class Customer extends BasicPrincipal {
         result = 31 * result + getAddress().hashCode();
         result = 31 * result + getBirth().hashCode();
         return result;
-    }
-
-    public void setAssignedTasks(List<Task> assignedTasks) {
-        this.assignedTasks = assignedTasks;
     }
 }

@@ -1,6 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.domain;
 
-import java.util.List;
+import java.util.Objects;
 
 public class Task extends BasicIdentity {
 
@@ -10,15 +10,19 @@ public class Task extends BasicIdentity {
     private String description;
     private Double tokenCost;
     private Double votingPoints;
+    private Organization createdBy;
     private TaskStatus status;
-    private List<Customer> assignedUsers;
 
-    public List<Customer> getAssignedUsers() {
-        return assignedUsers;
+    public Task() {
     }
 
-    public void setAssignedUsers(List<Customer> assignedUsers) {
-        this.assignedUsers = assignedUsers;
+    public Task(String name, String description, Double tokenCost, Double votingPoints, Organization createdBy, TaskStatus status) {
+        this.name = name;
+        this.description = description;
+        this.tokenCost = tokenCost;
+        this.votingPoints = votingPoints;
+        this.createdBy = createdBy;
+        this.status = status;
     }
 
     public TaskStatus getStatus() {
@@ -61,29 +65,29 @@ public class Task extends BasicIdentity {
         this.votingPoints = votingPoints;
     }
 
+    public Organization getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Organization createdBy) {
+        this.createdBy = createdBy;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Task)) return false;
-
+        if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-
-        if (!getName().equals(task.getName())) return false;
-        if (!getDescription().equals(task.getDescription())) return false;
-        if (!getTokenCost().equals(task.getTokenCost())) return false;
-        if (!getVotingPoints().equals(task.getVotingPoints())) return false;
-        if (getStatus() != task.getStatus()) return false;
-        return getAssignedUsers() != null ? getAssignedUsers().equals(task.getAssignedUsers()) : task.getAssignedUsers() == null;
+        return Objects.equals(getName(), task.getName()) &&
+                Objects.equals(getDescription(), task.getDescription()) &&
+                Objects.equals(getTokenCost(), task.getTokenCost()) &&
+                Objects.equals(getVotingPoints(), task.getVotingPoints()) &&
+                Objects.equals(getCreatedBy(), task.getCreatedBy()) &&
+                getStatus() == task.getStatus();
     }
 
     @Override
     public int hashCode() {
-        int result = getName().hashCode();
-        result = 31 * result + getDescription().hashCode();
-        result = 31 * result + getTokenCost().hashCode();
-        result = 31 * result + getVotingPoints().hashCode();
-        result = 31 * result + getStatus().hashCode();
-        result = 31 * result + (getAssignedUsers() != null ? getAssignedUsers().hashCode() : 0);
-        return result;
+        return Objects.hash(getName(), getDescription(), getTokenCost(), getVotingPoints(), getCreatedBy(), getStatus());
     }
 }
