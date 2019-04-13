@@ -1,6 +1,7 @@
 package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
 import com.google.common.primitives.Ints;
+import com.tradisys.odyssey.apg.s2w.domain.BasicIdentity;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
 import com.tradisys.odyssey.apg.s2w.store.EntityWithId;
 import org.apache.commons.lang3.SerializationException;
@@ -14,7 +15,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class BaseLevelDBStore<T extends Serializable> implements BaseStore<T> {
+public abstract class BaseLevelDBStore<T extends BasicIdentity> implements BaseStore<T> {
     protected abstract short getIdPrefix();
     protected abstract short getTablePrefix();
 

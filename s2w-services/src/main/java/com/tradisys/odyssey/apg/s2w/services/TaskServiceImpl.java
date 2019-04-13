@@ -3,6 +3,7 @@ package com.tradisys.odyssey.apg.s2w.services;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
 import com.tradisys.odyssey.apg.s2w.store.EntityWithId;
+import com.tradisys.odyssey.apg.s2w.store.TaskStore;
 import com.tradisys.odyssey.apg.s2w.store.leveldb.LevelDBTaskStore;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,7 +13,7 @@ import java.util.Optional;
 public class TaskServiceImpl implements TasksService {
 
     @Autowired
-    LevelDBTaskStore tasksStore;
+    private TaskStore tasksStore;
 
     @Override
     public Integer createNewTask(Task task) {
