@@ -23,7 +23,7 @@
         <!-- Internal project dependencies-->
         <dependency>
             <groupId>com.tradisys.odyssey.apg.s2w</groupId>
-            <artifactId>s2w-domain</artifactId>
+            <artifactId>s2w-services</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

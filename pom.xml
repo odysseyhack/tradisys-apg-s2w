@@ -7,6 +7,7 @@
         <module>s2w-web</module>
         <module>s2w-base</module>
         <module>s2w-domain</module>
+        <module>s2w-services</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -25,6 +26,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
         <junit.version>4.11</junit.version>
     </properties>
 
@@ -33,6 +35,12 @@
             <dependency>
                 <groupId>com.tradisys.odyssey.apg.s2w</groupId>
                 <artifactId>s2w-domain</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.tradisys.odyssey.apg.s2w</groupId>
+                <artifactId>s2w-services</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -46,6 +54,15 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+        </dependency>
         <!-- TODO consider to remove -->
         <!--dependency>
             <groupId>org.springframework.boot</groupId>
