@@ -8,7 +8,7 @@ public class Organization extends BasicPrincipal {
 
     private String name;
     private String address;
-    private String rsin;
+    private String rsin; // similar to SSN
     private OrganizationStatus status;
 
     public Organization() {
