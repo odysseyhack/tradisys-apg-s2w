@@ -1,6 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.domain;
 
-public class BasicPrincipal extends BasicIdentity {
+public abstract class BasicPrincipal extends BasicIdentity {
 
     private static final long serialVersionUID = 984743260000720068L;
 
