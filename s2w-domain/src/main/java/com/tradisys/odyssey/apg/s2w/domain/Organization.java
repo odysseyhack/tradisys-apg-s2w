@@ -6,7 +6,7 @@ public class Organization extends BasicPrincipal {
 
     private String name;
     private String address;
-    private String rsin;
+    private String rsin; // similar to SSN
 
     public String getName() {
         return name;
@@ -22,5 +22,13 @@ public class Organization extends BasicPrincipal {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getRsin() {
+        return rsin;
+    }
+
+    public void setRsin(String rsin) {
+        this.rsin = rsin;
     }
 }
