@@ -46,7 +46,7 @@ public class LevelDBTaskStoreTest {
 
     @Test
     public void t001_saveAssignment() {
-        int firstTaskId = store.insert(firstTestTask);
+        long firstTaskId = store.insert(firstTestTask);
         store.insert(secondTestTask);
 
         store.saveAssignment(firstTaskId, 1);

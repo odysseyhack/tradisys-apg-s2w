@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface TasksService {
 
-    Integer createNewTask(Task task);
+    Long createNewTask(Task task);
 
     void updateTask(Task task);
 

@@ -1,7 +1,7 @@
 package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
 import com.google.common.primitives.Bytes;
-import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
 import com.google.common.primitives.Shorts;
 
 public class Keys {
@@ -18,8 +18,8 @@ public class Keys {
         return Shorts.toByteArray(prefix);
     }
 
-    public static byte[] fromPrefixAndId(short prefix, int id) {
-        byte[] idBytes = Ints.toByteArray(id);
+    public static byte[] fromPrefixAndId(short prefix, long id) {
+        byte[] idBytes = Longs.toByteArray(id);
 
         return fromPrefixAndBytes(prefix, idBytes);
     }
