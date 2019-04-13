@@ -7,6 +7,8 @@ import com.google.common.primitives.Shorts;
 public class Keys {
     public static short CustomerIdPrefix = 1;
     public static short CustomerPrefix = 2;
+    public static short OrganizationIdPrefix = 3;
+    public static short OrganizationPrefix = 4;
 
     public static byte[] fromPrefix(short prefix) {
         return Shorts.toByteArray(prefix);

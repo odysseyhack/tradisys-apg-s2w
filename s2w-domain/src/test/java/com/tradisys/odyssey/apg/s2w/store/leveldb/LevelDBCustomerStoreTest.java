@@ -3,20 +3,18 @@ package com.tradisys.odyssey.apg.s2w.store.leveldb;
 import com.google.common.io.Files;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
-import org.iq80.leveldb.*;
-import static org.iq80.leveldb.impl.Iq80DBFactory.*;
-
+import org.iq80.leveldb.DB;
+import org.iq80.leveldb.Options;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.iq80.leveldb.impl.Iq80DBFactory.factory;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LevelDBCustomerStoreTest {
@@ -59,8 +57,8 @@ public class LevelDBCustomerStoreTest {
 
     @Test
     public void t001_saveCustomer() {
-        int firstCustomerId = store.saveCustomer(firstTestCustomer);
-        int secondCustomerId = store.saveCustomer(secondTestCustomer);
+        int firstCustomerId = store.insert(firstTestCustomer);
+        int secondCustomerId = store.insert(secondTestCustomer);
 
         Assert.assertEquals(firstCustomerId, 1);
         Assert.assertEquals(secondCustomerId, 2);
@@ -68,8 +66,8 @@ public class LevelDBCustomerStoreTest {
 
     @Test
     public void t002_getCustomerById() {
-        Optional<Customer> firstCustomerFromDB = store.getCustomerById(1);
-        Optional<Customer> secondCustomerFromDB = store.getCustomerById(2);
+        Optional<Customer> firstCustomerFromDB = store.findById(1);
+        Optional<Customer> secondCustomerFromDB = store.findById(2);
 
         Assert.assertEquals(firstCustomerFromDB.get(), firstTestCustomer);
         Assert.assertEquals(secondCustomerFromDB.get(), secondTestCustomer);
@@ -77,17 +75,17 @@ public class LevelDBCustomerStoreTest {
 
     @Test
     public void t003_getAllCustomers() {
-        List<Customer> customersFromDB = store.getAllCustomers();
+        List<Customer> customersFromDB = store.findAll();
         Assert.assertEquals(customersFromDB.contains(firstTestCustomer), true);
         Assert.assertEquals(customersFromDB.contains(secondTestCustomer), true);
     }
 
     @Test
     public void t004_deleteCustomerById() {
-        store.deleteCustomerById(1);
-        store.deleteCustomerById(2);
+        store.deleteById(1);
+        store.deleteById(2);
 
-        List<Customer> customersFromDB = store.getAllCustomers();
+        List<Customer> customersFromDB = store.findAll();
 
         Assert.assertEquals(customersFromDB.isEmpty(), true);
     }
