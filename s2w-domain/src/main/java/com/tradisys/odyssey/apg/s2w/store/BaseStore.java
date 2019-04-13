@@ -7,5 +7,5 @@ public interface BaseStore<T> {
     int insert(T t);
     void deleteById(int id);
     Optional<T> findById(int id);
-    List<T> findAll();
+    List<EntityWithId<T>> findAll();
 }

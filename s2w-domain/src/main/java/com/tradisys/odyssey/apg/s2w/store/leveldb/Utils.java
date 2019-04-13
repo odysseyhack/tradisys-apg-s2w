@@ -6,7 +6,6 @@ import org.iq80.leveldb.DBIterator;
 import java.io.IOException;
 import java.util.Map;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 public class Utils {
     public static boolean startsWith(byte[] arr, byte[] prefix) {

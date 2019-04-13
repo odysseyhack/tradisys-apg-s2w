@@ -3,6 +3,7 @@ package com.tradisys.odyssey.apg.s2w.store.leveldb;
 import com.google.common.io.Files;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
+import com.tradisys.odyssey.apg.s2w.store.EntityWithId;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.Options;
 import org.junit.*;
@@ -75,17 +76,34 @@ public class LevelDBCustomerStoreTest {
 
     @Test
     public void t003_getAllCustomers() {
-        List<Customer> customersFromDB = store.findAll();
-        Assert.assertEquals(customersFromDB.contains(firstTestCustomer), true);
-        Assert.assertEquals(customersFromDB.contains(secondTestCustomer), true);
+        List<EntityWithId<Customer>> customersFromDB = store.findAll();
+        Assert.assertEquals(
+                customersFromDB
+                        .contains(new EntityWithId<>(firstTestCustomer, 1)),
+                true
+        );
+        Assert.assertEquals(
+                customersFromDB
+                        .contains(new EntityWithId<>(secondTestCustomer, 2)),
+                true
+        );
     }
 
     @Test
-    public void t004_deleteCustomerById() {
+    public void t005_customerIdByBSN() {
+        Optional<Integer> maybeFirstCustomerId = store.customerIdByBSN(firstTestCustomer.getBsn());
+        Optional<Integer> maybeSecondCustomerId = store.customerIdByBSN(secondTestCustomer.getBsn());
+
+        Assert.assertEquals(maybeFirstCustomerId.get(), new Integer(1));
+        Assert.assertEquals(maybeSecondCustomerId.get(), new Integer(2));
+    }
+
+    @Test
+    public void t006_deleteCustomerById() {
         store.deleteById(1);
         store.deleteById(2);
 
-        List<Customer> customersFromDB = store.findAll();
+        List<EntityWithId<Customer>> customersFromDB = store.findAll();
 
         Assert.assertEquals(customersFromDB.isEmpty(), true);
     }

@@ -2,6 +2,7 @@ package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
 import com.google.common.primitives.Ints;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
+import com.tradisys.odyssey.apg.s2w.store.EntityWithId;
 import org.apache.commons.lang3.SerializationException;
 import org.apache.commons.lang3.SerializationUtils;
 import org.iq80.leveldb.DB;
@@ -9,6 +10,7 @@ import org.iq80.leveldb.DB;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,16 +60,20 @@ public abstract class BaseLevelDBStore<T extends Serializable> implements BaseSt
     }
 
     @Override
-    public List<T> findAll() {
+    public List<EntityWithId<T>> findAll() {
         byte[] prefixBytes = Keys.fromPrefix(getTablePrefix());
-        List<T> result = new ArrayList<>();
+        List<EntityWithId<T>> result = new ArrayList<>();
 
         try {
             Utils.iterateOverPrefix(getDB(), prefixBytes, entry -> {
                 try {
+                    byte[] keyBytes = entry.getKey();
                     byte[] valueBytes = entry.getValue();
+
                     T t = SerializationUtils.deserialize(valueBytes);
-                    result.add(t);
+                    int id = Ints.fromByteArray(Arrays.copyOfRange(keyBytes, 2, 6));
+
+                    result.add(new EntityWithId<>(t, id));
                 } catch (SerializationException e) {}
             });
         }
