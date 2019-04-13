@@ -30,6 +30,9 @@
         <spring.version>5.1.6.RELEASE</spring.version>
         <junit.version>4.12</junit.version>
         <jackson.version>2.9.8</jackson.version>
+        <leveldb.version>0.11</leveldb.version>
+        <wavesj.version>0.13.1</wavesj.version>
+        <commons-lang3.version>3.8.1</commons-lang3.version>
     </properties>
 
     <dependencyManagement>
@@ -47,12 +50,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-context</artifactId>
-                <version>${spring.version}</version>
-            </dependency>
-
-            <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>
                 <version>${junit.version}</version>
@@ -62,7 +59,7 @@
             <dependency>
                 <groupId>com.wavesplatform</groupId>
                 <artifactId>wavesj</artifactId>
-                <version>0.13.1</version>
+                <version>${wavesj.version}</version>
             </dependency>
 
             <dependency>
@@ -75,6 +72,18 @@
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
                 <version>${jackson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.iq80.leveldb</groupId>
+                <artifactId>leveldb</artifactId>
+                <version>${leveldb.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons-lang3.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
