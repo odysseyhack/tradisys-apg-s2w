@@ -79,6 +79,6 @@ public class Customer extends BasicPrincipal {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this);
+        return Objects.hash(getFirstName(), getSecondName(), getBsn(), getAddress(), getBirth(), tasks);
     }
 }
