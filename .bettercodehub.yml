@@ -1,0 +1,4 @@
+exclude:
+- ./s2w-domain/*
+languages:
+- java
