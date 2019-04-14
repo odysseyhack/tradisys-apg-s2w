@@ -1,6 +1,7 @@
 package com.tradisys.odyssey.apg.s2w.dto;
 
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
+import com.tradisys.odyssey.apg.s2w.domain.Organization;
 import com.tradisys.odyssey.apg.s2w.services.CustomerService;
 import com.tradisys.odyssey.apg.s2w.services.OrganizationService;
 import com.tradisys.odyssey.apg.s2w.services.RegistrationService;
@@ -39,7 +40,6 @@ public class ServicesTests {
         customerService = mock(CustomerService.class);
         when(customerService.ensureCustomerExists(1L)).thenReturn(true);
         assertTrue(customerService.ensureCustomerExists(1L));
-
     }
 
     @Test
@@ -49,5 +49,18 @@ public class ServicesTests {
         assertNull(tasksService.getAllTasks());
     }
 
+    @Test
+    public void testOrganizationService(){
+        organizationService = mock(OrganizationService.class);
+        when(organizationService.ensureOrganizationExists(1L)).thenReturn(true);
+        assertTrue(organizationService.ensureOrganizationExists(1L));
+    }
+
+    @Test
+    public void testResistrationService(){
+        registrationService = mock(RegistrationService.class);
+        when(registrationService.register(null)).thenReturn(null);
+        assertNull(registrationService.register(null));
+    }
 
 }
