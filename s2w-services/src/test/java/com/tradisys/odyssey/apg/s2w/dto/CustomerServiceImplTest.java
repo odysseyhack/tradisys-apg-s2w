@@ -61,8 +61,12 @@ public class CustomerServiceImplTest {
     @Test
     public void t003_accountInfo() {
         Optional<AccountInfo> maybeAccountInfo = customerService.findCustomerAccountInfo(1l);
-
         Assert.assertEquals(maybeAccountInfo.isPresent(), false);
+    }
+
+    @Test
+    public void t004_customerExists() {
+        Assert.assertEquals(customerService.ensureCustomerExists(1l), true);
     }
 
 }
