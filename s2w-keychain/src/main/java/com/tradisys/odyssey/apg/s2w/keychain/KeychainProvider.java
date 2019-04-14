@@ -5,6 +5,8 @@ package com.tradisys.odyssey.apg.s2w.keychain;
  */
 public interface KeychainProvider {
 
+    String APG_ID = "APG_ID";
+
     /**
      * Perform seed generation
      *

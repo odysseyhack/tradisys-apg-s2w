@@ -24,7 +24,11 @@
         <dependency>
             <groupId>com.tradisys.odyssey.apg.s2w</groupId>
             <artifactId>s2w-services</artifactId>
-            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.tradisys.odyssey.apg.s2w</groupId>
+            <artifactId>s2w-blockchain-plugin</artifactId>
         </dependency>
     </dependencies>
 

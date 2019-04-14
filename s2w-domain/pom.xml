@@ -12,10 +12,6 @@
     <artifactId>s2w-domain</artifactId>
     <name>s2w-domain</name>
 
-    <properties>
-        <junit.version>4.11</junit.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
