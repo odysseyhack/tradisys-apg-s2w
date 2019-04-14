@@ -39,12 +39,24 @@ public class Task extends BasicIdentity {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public Double getTokenCost() {
         return tokenCost;
     }
 
+    public void setTokenCost(Double tokenCost) {
+        this.tokenCost = tokenCost;
+    }
+
     public Double getVotingPoints() {
         return votingPoints;
+    }
+
+    public void setVotingPoints(Double votingPoints) {
+        this.votingPoints = votingPoints;
     }
 
     public Organization getOrganization() {

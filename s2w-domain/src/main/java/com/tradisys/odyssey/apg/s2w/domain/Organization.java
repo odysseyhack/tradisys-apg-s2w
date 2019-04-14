@@ -24,6 +24,10 @@ public class Organization extends BasicPrincipal {
         return status;
     }
 
+    public void setStatus(OrganizationStatus status) {
+        this.status = status;
+    }
+
     public String getName() {
         return name;
     }
@@ -36,8 +40,16 @@ public class Organization extends BasicPrincipal {
         return address;
     }
 
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getRsin() {
         return rsin;
+    }
+
+    public void setRsin(String rsin) {
+        this.rsin = rsin;
     }
 
     @Override
