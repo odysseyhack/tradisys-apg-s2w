@@ -64,21 +64,17 @@ public class TaskServiceImpl implements TasksService {
     }
 
     @Override
-    public void assignTask(Long taskId, Long customerId) {
-        Optional<Customer> customerOptional = customerStore.findById(customerId);
-        Customer customer = null;
-        if (customerOptional.isPresent()) {
-            customer = customerOptional.get();
+    public boolean assignTask(Long taskId, Long customerId) {
+
+        boolean customerExists = customerStore.findById(customerId).isPresent();
+        boolean taskExists = tasksStore.findById(taskId).isPresent();
+
+        if (customerExists && taskExists) {
+            tasksStore.saveAssignment(taskId, customerId);
+            return true;
+        } else {
+            return false;
         }
-        Optional<Task> taskOptional = tasksStore.findById(taskId);
-        Task task = null;
-        if (taskOptional.isPresent()) {
-            task = taskOptional.get();
-            customer.addTask(task);
-        }
-        customerStore.update(customer);
-        task.setCustomer(customer);
-        tasksStore.update(task);
     }
 
     private Optional<Task> findTask(String taskId) {

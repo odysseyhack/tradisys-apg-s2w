@@ -30,7 +30,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     public BasicPrincipal register(BasicPrincipal regInfo) {
         BaseStore store = principalStoreProvider.resolve(regInfo);
         store.insert(regInfo);
-        keychainProvider.generateSeed(regInfo.getType() + "_" + Long.toString(regInfo.getId()));
+        keychainProvider.generateSeed(regInfo.getType() + regInfo.getId());
         LOGGER.info("Before new principle event");
         publisher.publishEvent(new NewPrincipleEvent(regInfo));
         return regInfo;
