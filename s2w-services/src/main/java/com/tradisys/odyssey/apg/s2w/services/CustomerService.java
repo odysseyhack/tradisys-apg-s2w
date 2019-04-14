@@ -2,7 +2,6 @@ package com.tradisys.odyssey.apg.s2w.services;
 
 import com.tradisys.odyssey.apg.s2w.domain.AccountInfo;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
-
 import java.util.List;
 import java.util.Optional;
 

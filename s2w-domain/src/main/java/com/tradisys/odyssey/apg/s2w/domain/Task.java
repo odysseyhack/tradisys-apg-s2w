@@ -77,12 +77,7 @@ public class Task extends BasicIdentity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(getName(), task.getName()) &&
-                Objects.equals(getDescription(), task.getDescription()) &&
-                Objects.equals(getTokenCost(), task.getTokenCost()) &&
-                Objects.equals(getVotingPoints(), task.getVotingPoints()) &&
-                Objects.equals(getOrganization(), task.getOrganization()) &&
-                getStatus() == task.getStatus();
+        return Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && Objects.equals(getTokenCost(), task.getTokenCost()) && Objects.equals(getVotingPoints(), task.getVotingPoints()) && Objects.equals(getOrganization(), task.getOrganization()) && getStatus() == task.getStatus();
     }
 
     @Override

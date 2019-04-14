@@ -52,10 +52,7 @@ public class Organization extends BasicPrincipal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Organization that = (Organization) o;
-        return Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getAddress(), that.getAddress()) &&
-                Objects.equals(getRsin(), that.getRsin()) &&
-                getStatus() == that.getStatus();
+        return Objects.equals(getName(), that.getName()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getRsin(), that.getRsin()) && getStatus() == that.getStatus();
     }
 
     @Override

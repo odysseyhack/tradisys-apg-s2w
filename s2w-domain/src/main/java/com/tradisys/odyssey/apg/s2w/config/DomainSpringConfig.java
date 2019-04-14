@@ -26,13 +26,10 @@ public class DomainSpringConfig {
         DB db = null;
         Options options = new Options();
         options.createIfMissing(true);
-
         File dbFile = Files.createTempDir();
-
         try {
             db = factory.open(dbFile, options);
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
         return db;
     }
 

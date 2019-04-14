@@ -16,12 +16,4 @@ public class JsonMapper implements BiDirectionMapper {
     public <T> T mapAny(InputStream in, Class<T> valueType) throws IOException {
         return jackson.readValue(in, valueType);
     }
-
-    public ObjectMapper getJackson() {
-        return jackson;
-    }
-
-    public void setJackson(ObjectMapper jackson) {
-        this.jackson = jackson;
-    }
 }

@@ -26,4 +26,8 @@ public abstract class BasicPrincipal extends BasicIdentity {
     public Role getRole() {
         return role;
     }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }

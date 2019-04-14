@@ -12,7 +12,6 @@ public class Utils {
             return false;
         } else {
             boolean result = true;
-
             for (int i = 0; i < prefix.length; i++) {
                 result = result && (arr[i] == prefix[i]);
             }
