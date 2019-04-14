@@ -2,6 +2,7 @@ package com.tradisys.odyssey.apg.s2w.domain;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Customer extends BasicPrincipal {
 
@@ -15,14 +16,6 @@ public class Customer extends BasicPrincipal {
     private List<Task> tasks;
 
     public Customer() {
-    }
-
-    public Customer(String firstName, String secondName, String bsn, String address, Date birth) {
-        this.firstName = firstName;
-        this.secondName = secondName;
-        this.bsn = bsn;
-        this.address = address;
-        this.birth = birth;
     }
 
     @Override
@@ -98,11 +91,6 @@ public class Customer extends BasicPrincipal {
 
     @Override
     public int hashCode() {
-        int result = getFirstName().hashCode();
-        result = 31 * result + getSecondName().hashCode();
-        result = 31 * result + getBsn().hashCode();
-        result = 31 * result + getAddress().hashCode();
-        result = 31 * result + getBirth().hashCode();
-        return result;
+        return Objects.hashCode(this);
     }
 }
