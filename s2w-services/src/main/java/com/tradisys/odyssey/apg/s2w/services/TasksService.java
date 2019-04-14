@@ -18,10 +18,10 @@ public interface TasksService {
 
     List<Task> getAllTasks();
 
-    List<Task> getAllTasksByCustomer(Integer customerId);
+    List<Task> getAllTasksByCustomer(Long customerId);
 
-    List<Task> getAllTasksByOrganization(Integer organizationId);
+    List<Task> getAllTasksByOrganization(Long organizationId);
 
-    void assignTask(Integer taskId, Integer customerId);
+    void assignTask(Long taskId, Long customerId);
 
 }

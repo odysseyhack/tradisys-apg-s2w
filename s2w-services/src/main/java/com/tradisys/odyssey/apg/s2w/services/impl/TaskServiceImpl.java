@@ -1,8 +1,9 @@
-package com.tradisys.odyssey.apg.s2w.services;
+package com.tradisys.odyssey.apg.s2w.services.impl;
 
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.domain.Organization;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
+import com.tradisys.odyssey.apg.s2w.services.TasksService;
 import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
 import com.tradisys.odyssey.apg.s2w.store.OrganizationStore;
 import com.tradisys.odyssey.apg.s2w.store.TaskStore;
@@ -48,12 +49,12 @@ public class TaskServiceImpl implements TasksService {
     }
 
     @Override
-    public List<Task> getAllTasksByCustomer(Integer customerId) {
+    public List<Task> getAllTasksByCustomer(Long customerId) {
         return tasksStore.findAllAssignedTo(customerId);
     }
 
     @Override
-    public List<Task> getAllTasksByOrganization(Integer organizationId) {
+    public List<Task> getAllTasksByOrganization(Long organizationId) {
         List<Task> organizationTasks = null;
         Optional<Organization> organizationOptional = organizationStore.findById(organizationId);
         if (organizationOptional.isPresent()) {
@@ -63,7 +64,7 @@ public class TaskServiceImpl implements TasksService {
     }
 
     @Override
-    public void assignTask(Integer taskId, Integer customerId) {
+    public void assignTask(Long taskId, Long customerId) {
         Optional<Customer> customerOptional = customerStore.findById(customerId);
         Customer customer = null;
         if (customerOptional.isPresent()) {

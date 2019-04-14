@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>s2w-keychain</artifactId>
+    <name>s2w-keychain</name>
     <dependencies>
         <dependency>
             <groupId>org.springframework</groupId>

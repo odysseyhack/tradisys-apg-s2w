@@ -1,6 +1,7 @@
-package com.tradisys.odyssey.apg.s2w.services;
+package com.tradisys.odyssey.apg.s2w.services.impl;
 
 import com.tradisys.odyssey.apg.s2w.domain.BasicPrincipal;
+import com.tradisys.odyssey.apg.s2w.services.RegistrationService;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
 import com.tradisys.odyssey.apg.s2w.store.PrincipalStoreProvider;
 import org.slf4j.Logger;
