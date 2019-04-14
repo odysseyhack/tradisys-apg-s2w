@@ -1,5 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.controller;
 
+import com.tradisys.odyssey.apg.s2w.domain.AccountInfo;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
 import com.tradisys.odyssey.apg.s2w.keychain.KeychainProvider;
@@ -20,13 +21,10 @@ import java.util.Optional;
 @RestController
 public class CustomerController {
     @Autowired
-    CustomerService customerService;
+    private CustomerService customerService;
 
     @Autowired
-    TasksService tasksService;
-
-    @Autowired
-    KeychainProvider keychainProvider;
+    private TasksService tasksService;
 
     @GetMapping("/customers")
     public ResponseEntity<?> findAllCustomers() {
@@ -38,11 +36,9 @@ public class CustomerController {
     public ResponseEntity<?> findCustomerById(@PathVariable Long customerId) {
         Optional<Customer> maybeCustomer = customerService.findCustomerById(customerId);
 
-        if (maybeCustomer.isPresent()) {
-            return new ResponseEntity<>(maybeCustomer.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("Not found", HttpStatus.NOT_FOUND);
-        }
+        return maybeCustomer
+                .<ResponseEntity<?>>map(customer -> new ResponseEntity<>(customer, HttpStatus.OK))
+                .orElseGet(() -> customerNotFoundError(customerId));
     }
 
     @GetMapping("/customers/{id}/tasks")
@@ -52,22 +48,21 @@ public class CustomerController {
             List<Task> assignedTasks = tasksService.getAllTasksByCustomer(customerId);
             return new ResponseEntity<>(assignedTasks, HttpStatus.OK);
         } else {
-            String errorMessage = String.format("Customer with id - {} not found", customerId);
-            return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
+            return customerNotFoundError(customerId);
         }
     }
 
     @GetMapping("/customers/{id}/account")
     public ResponseEntity<?> findCustomerAccountInfo(@PathVariable Long customerId) {
-        Optional<String> maybeCustomerSeed = customerService.findCustomerAccountInfo(customerId);
+        Optional<AccountInfo> maybeCustomerSeed = customerService.findCustomerAccountInfo(customerId);
 
         return maybeCustomerSeed
-                .map(seed -> new ResponseEntity<>(seed, HttpStatus.OK))
+                .<ResponseEntity<?>>map(seed -> new ResponseEntity<>(seed, HttpStatus.OK))
                 .orElse(customerNotFoundError(customerId));
     }
 
-    protected ResponseEntity<String> customerNotFoundError(Long customerId) {
-        String errorMessage = String.format("Customer with id - {} not found", customerId);
-        return new ResponseEntity<String>(errorMessage, HttpStatus.NOT_FOUND);
+    private ResponseEntity<String> customerNotFoundError(Long customerId) {
+        String errorMessage = String.format("Customer with id - %d not found", customerId);
+        return new ResponseEntity<>(errorMessage, HttpStatus.NOT_FOUND);
     }
 }
