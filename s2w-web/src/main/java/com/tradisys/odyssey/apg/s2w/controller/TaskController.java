@@ -28,12 +28,6 @@ public class TaskController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("tasks")
-    public ResponseEntity<?> updateTask(@RequestBody Task task) {
-        tasksService.updateTask(task);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
-
     @DeleteMapping("tasks/{id}")
     public ResponseEntity<?> removeTask(@PathVariable String id) {
         tasksService.removeTask(id);
