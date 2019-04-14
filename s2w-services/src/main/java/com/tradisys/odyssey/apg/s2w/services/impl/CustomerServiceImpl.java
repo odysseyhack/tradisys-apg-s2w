@@ -2,6 +2,7 @@ package com.tradisys.odyssey.apg.s2w.services.impl;
 
 import com.tradisys.odyssey.apg.s2w.domain.AccountInfo;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
+import com.tradisys.odyssey.apg.s2w.domain.Role;
 import com.tradisys.odyssey.apg.s2w.keychain.KeychainProvider;
 import com.tradisys.odyssey.apg.s2w.services.CustomerService;
 import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
@@ -39,7 +40,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Optional<AccountInfo> findCustomerAccountInfo(Long customerId) {
-        String maybeSeed = keychainProvider.getSeedById(customerId.toString());
+        String maybeSeed = keychainProvider.getSeedById(Role.CUSTOMER.name() + "_" + customerId.toString());
         return Optional.ofNullable(maybeSeed).map(CustomerServiceImpl::mkAccountInfo);
     }
 
