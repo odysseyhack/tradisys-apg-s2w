@@ -2,6 +2,7 @@ package com.tradisys.odyssey.apg.s2w.controller;
 
 import com.tradisys.odyssey.apg.s2w.domain.Organization;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
+import com.tradisys.odyssey.apg.s2w.domain.TaskStatus;
 import com.tradisys.odyssey.apg.s2w.services.OrganizationService;
 import com.tradisys.odyssey.apg.s2w.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,10 @@ public class OrganizationController {
         return maybeOrganization
                 .<ResponseEntity<?>>map(org -> {
                     task.setOrganization(org);
+                    task.setStatus(TaskStatus.OPEN);
+
                     tasksService.createNewTask(task);
+
                     return new ResponseEntity<>(task, HttpStatus.OK);
                 }).orElseGet(() -> organizationNotFoundError(organizationId));
     }
