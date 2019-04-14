@@ -22,6 +22,6 @@ public interface TasksService {
 
     List<Task> getAllTasksByOrganization(Long organizationId);
 
-    void assignTask(Long taskId, Long customerId);
+    boolean assignTask(Long taskId, Long customerId);
 
 }

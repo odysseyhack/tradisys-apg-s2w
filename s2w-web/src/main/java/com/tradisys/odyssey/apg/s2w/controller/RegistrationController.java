@@ -15,8 +15,8 @@ public class RegistrationController {
     @Autowired
     private RegistrationService registrationService;
 
-    @PostMapping("/{role}/register")
-    public ResponseEntity<?> register(@PathVariable Role role, @RequestBody BasicPrincipal principal) {
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody BasicPrincipal principal) {
         BasicPrincipal princip = registrationService.register(principal);
         return new ResponseEntity<>(princip, HttpStatus.OK);
     }

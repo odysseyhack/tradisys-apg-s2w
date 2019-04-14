@@ -28,7 +28,7 @@ public class RegistrationListener implements ApplicationListener<NewPrincipleEve
         try {
             BasicPrincipal principal = (BasicPrincipal) newPrincipleEvent.getSource();
             if (principal.getRole().equals(Role.ORGANIZATION)) {
-                String orgSeed = keychainProvider.getSeedById(principal.getId().toString());
+                String orgSeed = keychainProvider.getSeedById(principal.getType() + principal.getId().toString());
                 String apgSeed = keychainProvider.getSeedById(KeychainProvider.APG_ID);
 
                 PrivateKeyAccount orgPK = toPrivateKey(orgSeed);

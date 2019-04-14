@@ -1,9 +1,9 @@
 package com.tradisys.odyssey.apg.s2w.services.impl;
 
 import com.tradisys.odyssey.apg.s2w.domain.BasicPrincipal;
-import com.tradisys.odyssey.apg.s2w.services.RegistrationService;
 import com.tradisys.odyssey.apg.s2w.event.NewPrincipleEvent;
 import com.tradisys.odyssey.apg.s2w.keychain.KeychainProvider;
+import com.tradisys.odyssey.apg.s2w.services.RegistrationService;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
 import com.tradisys.odyssey.apg.s2w.store.PrincipalStoreProvider;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class RegistrationServiceImpl implements RegistrationService {
     public BasicPrincipal register(BasicPrincipal regInfo) {
         BaseStore store = principalStoreProvider.resolve(regInfo);
         store.insert(regInfo);
-        keychainProvider.generateSeed(Long.toString(regInfo.getId()));
+        keychainProvider.generateSeed(regInfo.getType() + regInfo.getId());
         LOGGER.info("Before new principle event");
         publisher.publishEvent(new NewPrincipleEvent(regInfo));
         return regInfo;

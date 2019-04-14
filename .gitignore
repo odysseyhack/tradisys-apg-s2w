@@ -4,6 +4,7 @@ HELP.md
 s2w-base/target/
 s2w-domain/target/
 s2w-web/target/
+s2w-services/target/
 
 ### STS ###
 .apt_generated

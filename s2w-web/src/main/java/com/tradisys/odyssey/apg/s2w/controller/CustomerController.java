@@ -32,7 +32,7 @@ public class CustomerController {
         return new ResponseEntity<>(customers, HttpStatus.OK);
     }
 
-    @GetMapping("/customers/{id}")
+    @GetMapping("/customers/{customerId}")
     public ResponseEntity<?> findCustomerById(@PathVariable Long customerId) {
         Optional<Customer> maybeCustomer = customerService.findCustomerById(customerId);
 
@@ -41,7 +41,7 @@ public class CustomerController {
                 .orElseGet(() -> customerNotFoundError(customerId));
     }
 
-    @GetMapping("/customers/{id}/tasks")
+    @GetMapping("/customers/{customerId}/tasks")
     public ResponseEntity<?> findAssignedTasks(@PathVariable Long customerId) {
         boolean customerExists = customerService.ensureCustomerExists(customerId);
         if (customerExists) {
@@ -52,7 +52,7 @@ public class CustomerController {
         }
     }
 
-    @GetMapping("/customers/{id}/account")
+    @GetMapping("/customers/{customerId}/account")
     public ResponseEntity<?> findCustomerAccountInfo(@PathVariable Long customerId) {
         Optional<AccountInfo> maybeCustomerSeed = customerService.findCustomerAccountInfo(customerId);
 
