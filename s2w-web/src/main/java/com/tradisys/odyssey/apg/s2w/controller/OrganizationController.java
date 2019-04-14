@@ -28,7 +28,7 @@ public class OrganizationController {
         return new ResponseEntity<>(organizations, HttpStatus.OK);
     }
 
-    @GetMapping("/orgs/{id}")
+    @GetMapping("/orgs/{organizationId}")
     public ResponseEntity<?> findOrganizationById(@PathVariable Long organizationId) {
         Optional<Organization> maybeOrganization = organizationService.findOrganizationById(organizationId);
 
@@ -37,7 +37,7 @@ public class OrganizationController {
                 .orElseGet(() -> organizationNotFoundError(organizationId));
     }
 
-    @GetMapping("/orgs/{id}/tasks")
+    @GetMapping("/orgs/{organizationId}/tasks")
     public ResponseEntity<?> findTasksCreatedByOrganization(@PathVariable Long organizationId) {
         boolean organizationExists = organizationService
                 .ensureOrganizationExists(organizationId);
@@ -50,7 +50,7 @@ public class OrganizationController {
         }
     }
 
-    @PostMapping("orgs/{id}/tasks")
+    @PostMapping("orgs/{organizationId}/tasks")
     public ResponseEntity<?> createTaskForOrganization(@PathVariable Long organizationId, @RequestBody Task task) {
         Optional<Organization> maybeOrganization = organizationService
                 .findOrganizationById(organizationId);
