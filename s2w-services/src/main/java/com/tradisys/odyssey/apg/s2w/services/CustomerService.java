@@ -1,5 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.services;
 
+import com.tradisys.odyssey.apg.s2w.domain.AccountInfo;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface CustomerService {
 
     Optional<Customer> findCustomerById(Long customerId);
 
-    Optional<String> findCustomerAccountInfo(Long customerId);
+    Optional<AccountInfo> findCustomerAccountInfo(Long customerId);
 
     boolean ensureCustomerExists(Long customerId);
 }
