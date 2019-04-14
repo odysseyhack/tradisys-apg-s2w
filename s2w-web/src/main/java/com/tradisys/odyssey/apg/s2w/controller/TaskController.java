@@ -37,12 +37,8 @@ public class TaskController {
     @PostMapping("tasks/assign/{taskId}/{customerId}")
     public ResponseEntity<?> assignTask(@PathVariable Long taskId, @PathVariable Long customerId) {
         boolean success = tasksService.assignTask(taskId, customerId);
-        if (success) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        if (success) { return new ResponseEntity<>(HttpStatus.OK);
+        } else { return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
     }
-
-
 }

@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Scope;
 public class S2WKeychainConfiguration {
 
     @Bean
-    @Scope("singleton")
     public KeychainProvider s2WKeyChainDummyProvider() {
         return new S2WKeyChainDummyProvider();
     }

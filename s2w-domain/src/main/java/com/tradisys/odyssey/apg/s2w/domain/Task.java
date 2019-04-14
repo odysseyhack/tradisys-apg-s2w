@@ -1,6 +1,5 @@
 package com.tradisys.odyssey.apg.s2w.domain;
 
-import java.util.List;
 import java.util.Objects;
 
 public class Task extends BasicIdentity {
@@ -29,22 +28,6 @@ public class Task extends BasicIdentity {
         this.status = status;
     }
 
-    public Boolean getCustomerFulfilled() {
-        return isCustomerFulfilled;
-    }
-
-    public void setCustomerFulfilled(Boolean customerFulfilled) {
-        isCustomerFulfilled = customerFulfilled;
-    }
-
-    public Boolean getOrganizationConfirmed() {
-        return isOrganizationConfirmed;
-    }
-
-    public void setOrganizationConfirmed(Boolean organizationConfirmed) {
-        isOrganizationConfirmed = organizationConfirmed;
-    }
-
     public TaskStatus getStatus() {
         return status;
     }
@@ -65,24 +48,12 @@ public class Task extends BasicIdentity {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Double getTokenCost() {
         return tokenCost;
     }
 
-    public void setTokenCost(Double tokenCost) {
-        this.tokenCost = tokenCost;
-    }
-
     public Double getVotingPoints() {
         return votingPoints;
-    }
-
-    public void setVotingPoints(Double votingPoints) {
-        this.votingPoints = votingPoints;
     }
 
     public Organization getOrganization() {

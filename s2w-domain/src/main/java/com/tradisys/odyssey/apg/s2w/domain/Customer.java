@@ -70,18 +70,6 @@ public class Customer extends BasicPrincipal {
         this.birth = birth;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public void addTask(Task task){
-        this.tasks.add(task);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

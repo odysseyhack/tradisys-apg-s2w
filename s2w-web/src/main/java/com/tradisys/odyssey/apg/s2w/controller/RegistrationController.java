@@ -1,7 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.controller;
 
 import com.tradisys.odyssey.apg.s2w.domain.BasicPrincipal;
-import com.tradisys.odyssey.apg.s2w.domain.Role;
 import com.tradisys.odyssey.apg.s2w.services.RegistrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

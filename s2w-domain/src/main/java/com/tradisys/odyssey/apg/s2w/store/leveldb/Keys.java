@@ -20,7 +20,6 @@ public class Keys {
 
     public static byte[] fromPrefixAndId(short prefix, long id) {
         byte[] idBytes = Longs.toByteArray(id);
-
         return fromPrefixAndBytes(prefix, idBytes);
     }
 
