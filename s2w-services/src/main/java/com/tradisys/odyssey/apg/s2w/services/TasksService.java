@@ -12,7 +12,7 @@ public interface TasksService {
 
     Task createNewTask(Task task);
 
-    void updateTask(String taskId);
+    void updateTask(Task task);
 
     void removeTask(String taskId);
 
