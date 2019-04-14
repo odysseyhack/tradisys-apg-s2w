@@ -1,11 +1,13 @@
 package com.tradisys.odyssey.apg.s2w.dto;
 
 
+import com.tradisys.odyssey.apg.s2w.domain.AccountInfo;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.domain.Role;
 import com.tradisys.odyssey.apg.s2w.services.CustomerService;
 import com.tradisys.odyssey.apg.s2w.services.RegistrationService;
 import com.tradisys.odyssey.apg.s2w.services.config.ServicesSpringConfig;
+import com.wavesplatform.wavesj.Account;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -18,6 +20,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ServicesSpringConfig.class)
@@ -52,8 +55,14 @@ public class CustomerServiceImplTest {
     @Test
     public void t002_findAll() {
         List<Customer> customers = customerService.findAllCustomers();
-
         Assert.assertEquals(customers.size(), 1);
+    }
+
+    @Test
+    public void t003_accountInfo() {
+        Optional<AccountInfo> maybeAccountInfo = customerService.findCustomerAccountInfo(1l);
+
+        Assert.assertEquals(maybeAccountInfo.isPresent(), false);
     }
 
 }
