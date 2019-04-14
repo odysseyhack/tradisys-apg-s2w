@@ -24,7 +24,6 @@ public class PrincipalStoreProviderTest {
         Customer customer = new Customer();
         customer.setFirstName("AAA");
         customer.setSecondName("BBB");
-        customer.setRole(Role.CUSTOMER);
         BaseStore customerStore = principalStoreProvider.resolve(customer);
         Assert.assertTrue("customerStore is valid", customerStore instanceof CustomerStore);
     }
@@ -33,7 +32,6 @@ public class PrincipalStoreProviderTest {
     public void testOrganizationStoreProvider() {
         Organization organization = new Organization();
         organization.setName("AAA");
-        organization.setRole(Role.ORGANIZATION);
         BaseStore customerStore = principalStoreProvider.resolve(organization);
         Assert.assertTrue("customerStore is valid", customerStore instanceof OrganizationStore);
     }
