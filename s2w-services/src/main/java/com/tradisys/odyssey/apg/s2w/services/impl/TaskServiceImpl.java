@@ -32,9 +32,9 @@ public class TaskServiceImpl implements TasksService {
     }
 
     @Override
-    public void updateTask(String taskId) {
-        Optional<Task> task = findTask(taskId);
-        task.ifPresent(taskEntityWithId -> tasksStore.update(taskEntityWithId));
+    public void updateTask(Task task) {
+        Optional<Task> taskFound = findTask(task.getId().toString());
+        taskFound.ifPresent(taskEntityWithId -> tasksStore.update(task));
     }
 
     @Override

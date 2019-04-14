@@ -28,9 +28,9 @@ public class TaskController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PutMapping("tasks/{id}")
-    public ResponseEntity<?> updateTask(@PathVariable String id) {
-        tasksService.updateTask(id);
+    @PutMapping("tasks")
+    public ResponseEntity<?> updateTask(@RequestBody Task task) {
+        tasksService.updateTask(task);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
