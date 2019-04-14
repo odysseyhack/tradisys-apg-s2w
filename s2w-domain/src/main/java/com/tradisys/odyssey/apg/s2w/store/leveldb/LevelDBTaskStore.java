@@ -1,6 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
-import com.google.common.primitives.Ints;
+import com.google.common.primitives.Longs;
 import com.tradisys.odyssey.apg.s2w.domain.Organization;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
 import com.tradisys.odyssey.apg.s2w.store.TaskStore;
@@ -36,13 +36,13 @@ public class LevelDBTaskStore extends BaseLevelDBStore<Task> implements TaskStor
     }
 
     @Override
-    public void saveAssignment(int taskId, int userId) {
+    public void saveAssignment(long taskId, long userId) {
         byte[] keyBytes = Keys.fromPrefixAndId(Keys.TaskAssignmentPrefix, taskId);
-        db.put(keyBytes, Ints.toByteArray(userId));
+        db.put(keyBytes, Longs.toByteArray(userId));
     }
 
     @Override
-    public List<Task> findAllAssignedTo(int userId) {
+    public List<Task> findAllAssignedTo(long userId) {
         byte[] prefixBytes = Keys.fromPrefix(Keys.TaskAssignmentPrefix);
 
         List<Task> result = new ArrayList<>();
@@ -50,11 +50,11 @@ public class LevelDBTaskStore extends BaseLevelDBStore<Task> implements TaskStor
         try {
             Utils.iterateOverPrefix(db, prefixBytes, entry -> {
                 byte[] keyBytes = entry.getKey();
-                int assignedTo = Ints.fromByteArray(entry.getValue());
+                long assignedTo = Longs.fromByteArray(entry.getValue());
 
                 if (assignedTo == userId) {
-                    byte[] taskIdBytes = Arrays.copyOfRange(keyBytes, 2, 6);
-                    int taskId = Ints.fromByteArray(taskIdBytes);
+                    byte[] taskIdBytes = Arrays.copyOfRange(keyBytes, 2, 10);
+                    long taskId = Longs.fromByteArray(taskIdBytes);
 
                     findById(taskId)
                             .ifPresent(result::add);
@@ -75,7 +75,7 @@ public class LevelDBTaskStore extends BaseLevelDBStore<Task> implements TaskStor
             Utils.iterateOverPrefix(db, prefix, entry -> {
                 Task task = SerializationUtils.deserialize(entry.getValue());
 
-                if (task.getCreatedBy().equals(org)) {
+                if (task.getOrganization().equals(org)) {
                     result.add(task);
                 }
             });

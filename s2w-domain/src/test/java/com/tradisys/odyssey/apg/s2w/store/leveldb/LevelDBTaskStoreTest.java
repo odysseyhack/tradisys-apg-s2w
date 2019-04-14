@@ -24,7 +24,7 @@ public class LevelDBTaskStoreTest {
     protected static TaskStore store;
     protected static Organization firstTestOrganization = new Organization("TestOrg", "some address", "123abc", OrganizationStatus.VERIFIED);
     protected static Organization secondTestOrganization = new Organization("TestOrg#2", "some address", "123abc", OrganizationStatus.DEACTIVATED);
-    protected static Task firstTestTask = new Task("Task#1", "some test task", 100d, 100d, firstTestOrganization, TaskStatus.PUBLISHED);
+    protected static Task firstTestTask = new Task("Task#1", "some test task", 100d, 100d, firstTestOrganization, TaskStatus.OPEN);
     protected static Task secondTestTask = new Task("Task#2", "some test task", 200d, 200d, secondTestOrganization, TaskStatus.DRAFT);
 
 
@@ -46,7 +46,7 @@ public class LevelDBTaskStoreTest {
 
     @Test
     public void t001_saveAssignment() {
-        int firstTaskId = store.insert(firstTestTask);
+        long firstTaskId = store.insert(firstTestTask);
         store.insert(secondTestTask);
 
         store.saveAssignment(firstTaskId, 1);

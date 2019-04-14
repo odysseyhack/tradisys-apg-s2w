@@ -3,7 +3,6 @@ package com.tradisys.odyssey.apg.s2w.store.leveldb;
 import com.google.common.io.Files;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.store.BaseStore;
-import com.tradisys.odyssey.apg.s2w.store.EntityWithId;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.Options;
 import org.junit.*;
@@ -55,14 +54,14 @@ public class BaseLevelDBStoreTest {
 
     @Test
     public void t001_insert() {
-        int id = store.insert(createDefaultCustomer());
-        Assert.assertEquals(id, 1);
+        long id = store.insert(createDefaultCustomer());
+        Assert.assertEquals(id, 1l);
     }
 
     @Test
     public void t005_deleteById() {
         store.deleteById(1);
-        List<EntityWithId<String>> fromDB = store.findAll();
+        List<String> fromDB = store.findAll();
         Assert.assertEquals(fromDB.size(), 0);
     }
 
@@ -75,15 +74,17 @@ public class BaseLevelDBStoreTest {
 
     @Test
     public void t004_findAll() {
-        List<EntityWithId<Customer>> fromDB = store.findAll();
+        List<Customer> fromDB = store.findAll();
 
         Assert.assertEquals(fromDB.size(), 1);
-        Assert.assertEquals(fromDB.get(0), new EntityWithId<>(createDefaultCustomer(), 1));
+        Assert.assertEquals(fromDB.get(0), createDefaultCustomer());
     }
 
     @Test
     public void t003_update() {
-        store.update(1, createDefaultCustomer());
+        Customer customer = createDefaultCustomer();
+        customer.setId(1l);
+        store.update(customer);
     }
 
     private Customer createDefaultCustomer() {

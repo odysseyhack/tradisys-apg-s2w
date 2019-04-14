@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BaseStore<T extends BasicIdentity> {
-    int insert(T t);
-    void update(int id, T t);
-    void deleteById(int id);
-    Optional<T> findById(int id);
-    List<EntityWithId<T>> findAll();
+    long insert(T t);
+    void update(T t);
+    void deleteById(long id);
+    Optional<T> findById(long id);
+    List<T> findAll();
 }
