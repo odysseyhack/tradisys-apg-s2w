@@ -10,7 +10,7 @@ import org.junit.runners.MethodSorters;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,22 +22,31 @@ public class LevelDBCustomerStoreTest {
     protected static DB db;
     protected static CustomerStore store;
 
-    protected static Customer firstTestCustomer = new Customer(
+    protected static Customer firstTestCustomer = createCustomer(
             "John",
             "Doe",
             "bsn123",
-            "ulitsa Pushkina, dom Kolotushkina",
-            new Date(System.currentTimeMillis())
-    );
+            "ulitsa Pushkina, dom Kolotushkina");
 
-    protected static Customer secondTestCustomer = new Customer(
+    protected static Customer secondTestCustomer = createCustomer(
             "Jane",
             "Roe",
             "bsn321",
-            "ulitsa Pushkina, dom Kolotushkina",
-            new Date(System.currentTimeMillis())
-    );
+            "ulitsa Pushkina, dom Kolotushkina");
 
+    private static Customer createCustomer(String firstName, String secondName, String bsn, String address) {
+        Customer customer = new Customer();
+        customer.setFirstName(firstName);
+        customer.setSecondName(secondName);
+        customer.setBsn(bsn);
+        customer.setAddress(address);
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(1980, 10, 12, 11, 11, 11);
+        calendar.set(Calendar.MILLISECOND, 0);
+        customer.setBirth(calendar.getTime());
+        return customer;
+    }
 
     @BeforeClass
     public static void beforeAll() throws IOException {

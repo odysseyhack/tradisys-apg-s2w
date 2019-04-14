@@ -10,6 +10,7 @@ import com.tradisys.odyssey.apg.s2w.store.leveldb.LevelDBTaskStore;
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.Options;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.io.IOException;
 import static org.iq80.leveldb.impl.Iq80DBFactory.factory;
 
 @Configuration
+@ComponentScan(basePackages = {"com.tradisys.odyssey"})
 public class DomainSpringConfig {
 
     @Bean
