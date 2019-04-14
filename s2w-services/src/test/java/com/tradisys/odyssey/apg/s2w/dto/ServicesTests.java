@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -36,10 +36,17 @@ public class ServicesTests {
 
     @Test
     public void testCustomerService(){
-        Customer customer = new Customer();
         customerService = mock(CustomerService.class);
         when(customerService.ensureCustomerExists(1L)).thenReturn(true);
         assertTrue(customerService.ensureCustomerExists(1L));
+
+    }
+
+    @Test
+    public void testTaskService(){
+        tasksService = mock(TasksService.class);
+        when(tasksService.getAllTasks()).thenReturn(null);
+        assertNull(tasksService.getAllTasks());
     }
 
 
