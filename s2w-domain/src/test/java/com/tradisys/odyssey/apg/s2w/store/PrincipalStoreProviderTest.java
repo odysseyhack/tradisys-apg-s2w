@@ -37,4 +37,9 @@ public class PrincipalStoreProviderTest {
         BaseStore customerStore = principalStoreProvider.resolve(organization);
         Assert.assertTrue("customerStore is valid", customerStore instanceof OrganizationStore);
     }
+
+    @Test
+    public void testCorrectTypeInstantiation() {
+        Assert.assertTrue("Correct type is used", principalStoreProvider instanceof PrincipalStoreProvideImpl);
+    }
 }
