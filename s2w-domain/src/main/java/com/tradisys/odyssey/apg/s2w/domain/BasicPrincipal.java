@@ -7,7 +7,8 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         include = JsonTypeInfo.As.EXISTING_PROPERTY,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = Customer.class, name = "CUSTOMER")
+        @JsonSubTypes.Type(value = Customer.class, name = "CUSTOMER"),
+        @JsonSubTypes.Type(value = Organization.class, name = "ORGANIZATION")
 })
 public abstract class BasicPrincipal extends BasicIdentity {
 
@@ -16,6 +17,11 @@ public abstract class BasicPrincipal extends BasicIdentity {
     private Role role;
 
     public abstract String getType();
+
+    @Override
+    public Long getId() {
+        return super.getId();
+    }
 
     public Role getRole() {
         return role;
