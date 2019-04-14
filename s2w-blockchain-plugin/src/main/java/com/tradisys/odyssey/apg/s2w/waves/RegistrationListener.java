@@ -1,7 +1,6 @@
 package com.tradisys.odyssey.apg.s2w.waves;
 
 import com.tradisys.odyssey.apg.s2w.domain.BasicPrincipal;
-import com.tradisys.odyssey.apg.s2w.domain.Organization;
 import com.tradisys.odyssey.apg.s2w.domain.Role;
 import com.tradisys.odyssey.apg.s2w.event.NewPrincipleEvent;
 import com.tradisys.odyssey.apg.s2w.keychain.KeychainProvider;
@@ -35,9 +34,7 @@ public class RegistrationListener implements ApplicationListener<NewPrincipleEve
                 PrivateKeyAccount orgPK = toPrivateKey(orgSeed);
                 PrivateKeyAccount apgPK = toPrivateKey(apgSeed);
 
-                Organization org = (Organization) principal;
-                LOGGER.info("Organization registration in Waves blockchain: name={} rsin={} blockchain_account={}",
-                        org.getName(), org.getRsin(), orgPK.getAddress());
+                LOGGER.info("Organization registration in Waves blockchain: {}", principal.toString());
                 node.transfer(apgPK, ConfigProperties.S2WToken, orgPK.getAddress(), ConfigProperties.ORG_INIT_BALANCE, ConfigProperties.TRANSFER_FEE, null, "");
             }
         } catch (IOException ex) {
