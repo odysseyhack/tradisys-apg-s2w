@@ -22,11 +22,26 @@ public class LevelDBTaskStoreTest {
 
     protected static DB db;
     protected static TaskStore store;
-    protected static Organization firstTestOrganization = new Organization("TestOrg", "some address", "123abc", OrganizationStatus.VERIFIED);
-    protected static Organization secondTestOrganization = new Organization("TestOrg#2", "some address", "123abc", OrganizationStatus.DEACTIVATED);
-    protected static Task firstTestTask = new Task("Task#1", "some test task", 100d, 100d, firstTestOrganization, TaskStatus.OPEN);
-    protected static Task secondTestTask = new Task("Task#2", "some test task", 200d, 200d, secondTestOrganization, TaskStatus.DRAFT);
+    protected static Organization firstTestOrganization = createOrg("TestOrg", "some address", "123abc1", OrganizationStatus.VERIFIED);
+    protected static Organization secondTestOrganization = createOrg("TestOrg#2", "some address", "123abc2", OrganizationStatus.DEACTIVATED);
+    protected static Task firstTestTask = createTask("Task#1", "some test task1", 100d, 100d, firstTestOrganization, TaskStatus.OPEN);
+    protected static Task secondTestTask = createTask("Task#2", "some test task2", 200d, 200d, secondTestOrganization, TaskStatus.DRAFT);
 
+    private static Organization createOrg(String name, String address, String rsin, OrganizationStatus status) {
+        Organization org = new Organization();
+        org.setName(name);
+        org.setAddress(address);
+        org.setRsin(rsin);
+        org.setStatus(status);
+        return org;
+    }
+
+    private static Task createTask(String name, String description, Double tokenCost, Double votingPoints,
+                                   Organization organization, TaskStatus taskStatus) {
+        Task task = TaskTests.createTask(name, description, tokenCost, votingPoints, taskStatus);
+        task.setOrganization(organization);
+        return task;
+    }
 
     @BeforeClass
     public static void beforeAll() throws IOException {

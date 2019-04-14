@@ -16,13 +16,6 @@ public class Organization extends BasicPrincipal {
     public Organization() {
     }
 
-    public Organization(String name, String address, String rsin, OrganizationStatus status) {
-        this.name = name;
-        this.address = address;
-        this.rsin = rsin;
-        this.status = status;
-    }
-
     @Override
     public String getType() {
         return Role.ORGANIZATION.name();
@@ -87,11 +80,6 @@ public class Organization extends BasicPrincipal {
 
     @Override
     public String toString() {
-        return "Organization{" +
-                "name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", rsin='" + rsin + '\'' +
-                ", status=" + status +
-                '}';
+        return "Org {name='" + name + "\', address='" + address + "\', rsin='" + rsin + "\', status=" + status +'}';
     }
 }
