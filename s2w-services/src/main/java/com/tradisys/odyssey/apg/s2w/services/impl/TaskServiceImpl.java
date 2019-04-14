@@ -1,6 +1,5 @@
 package com.tradisys.odyssey.apg.s2w.services.impl;
 
-import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.domain.Organization;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
 import com.tradisys.odyssey.apg.s2w.services.TasksService;

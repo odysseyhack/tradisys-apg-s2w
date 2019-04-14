@@ -10,7 +10,6 @@ import com.wavesplatform.wavesj.Base58;
 import com.wavesplatform.wavesj.PrivateKeyAccount;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -47,11 +46,9 @@ public class CustomerServiceImpl implements CustomerService {
     protected static AccountInfo mkAccountInfo(String seed) {
         AccountInfo accountInfo = new AccountInfo();
         PrivateKeyAccount pka = PrivateKeyAccount.fromSeed(seed, 0, (byte) 'T');
-
         accountInfo.setSeed(seed);
         accountInfo.setPrivateKey(Base58.encode(pka.getPrivateKey()));
         accountInfo.setPublicKey(Base58.encode(pka.getPublicKey()));
-
         return accountInfo;
     }
 }

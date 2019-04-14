@@ -6,7 +6,6 @@ import java.util.Objects;
 public class Organization extends BasicPrincipal {
 
     private static final long serialVersionUID = -7286961814441889028L;
-
     private String name;
     private String address;
     private String rsin; // similar to SSN
@@ -25,10 +24,6 @@ public class Organization extends BasicPrincipal {
         return status;
     }
 
-    public void setStatus(OrganizationStatus status) {
-        this.status = status;
-    }
-
     public String getName() {
         return name;
     }
@@ -41,24 +36,8 @@ public class Organization extends BasicPrincipal {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getRsin() {
         return rsin;
-    }
-
-    public void setRsin(String rsin) {
-        this.rsin = rsin;
-    }
-
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 
     @Override
@@ -66,15 +45,11 @@ public class Organization extends BasicPrincipal {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Organization that = (Organization) o;
-        return Objects.equals(getName(), that.getName()) &&
-                Objects.equals(getAddress(), that.getAddress()) &&
-                Objects.equals(getRsin(), that.getRsin()) &&
-                getStatus() == that.getStatus();
+        return Objects.equals(getName(), that.getName()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getRsin(), that.getRsin()) && getStatus() == that.getStatus();
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(getName(), getAddress(), getRsin(), getStatus());
     }
 

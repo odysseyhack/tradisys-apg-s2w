@@ -3,7 +3,6 @@ package com.tradisys.odyssey.apg.s2w.controller;
 import com.tradisys.odyssey.apg.s2w.domain.AccountInfo;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.domain.Task;
-import com.tradisys.odyssey.apg.s2w.keychain.KeychainProvider;
 import com.tradisys.odyssey.apg.s2w.services.CustomerService;
 import com.tradisys.odyssey.apg.s2w.services.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 import java.util.Optional;
 

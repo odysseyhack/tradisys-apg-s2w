@@ -36,9 +36,7 @@ public class AccountInfo {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         AccountInfo that = (AccountInfo) o;
-        return Objects.equals(getSeed(), that.getSeed()) &&
-                Objects.equals(getPublicKey(), that.getPublicKey()) &&
-                Objects.equals(getPrivateKey(), that.getPrivateKey());
+        return Objects.equals(getSeed(), that.getSeed()) && Objects.equals(getPublicKey(), that.getPublicKey()) && Objects.equals(getPrivateKey(), that.getPrivateKey());
     }
 
     @Override

@@ -25,12 +25,4 @@ public class S2WKeyChainDummyProvider implements KeychainProvider {
     public String getSeedById(String id) {
         return keychain.get(id);
     }
-
-    public Map<String, String> getKeychain() {
-        return keychain;
-    }
-
-    public void setKeychain(Map<String, String> keychain) {
-        this.keychain = keychain;
-    }
 }

@@ -2,7 +2,6 @@ package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
 import org.iq80.leveldb.DB;
 import org.iq80.leveldb.DBIterator;
-
 import java.io.IOException;
 import java.util.Map;
 import java.util.function.Consumer;
@@ -13,11 +12,9 @@ public class Utils {
             return false;
         } else {
             boolean result = true;
-
             for (int i = 0; i < prefix.length; i++) {
                 result = result && (arr[i] == prefix[i]);
             }
-
             return result;
         }
     }

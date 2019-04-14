@@ -1,6 +1,5 @@
 package com.tradisys.odyssey.apg.s2w.store.leveldb;
 
-import com.google.common.primitives.Ints;
 import com.google.common.primitives.Longs;
 import com.tradisys.odyssey.apg.s2w.domain.Customer;
 import com.tradisys.odyssey.apg.s2w.store.CustomerStore;
@@ -36,7 +35,6 @@ public class LevelDBCustomerStore extends BaseLevelDBStore<Customer> implements 
         long id = super.insert(customer);
         byte[] idByBsnKey = Keys.fromPrefixAndBytes(Keys.CustomerBSNPrefix, customer.getBsn().getBytes());
         db.put(idByBsnKey, Longs.toByteArray(id));
-
         return id;
     }
 

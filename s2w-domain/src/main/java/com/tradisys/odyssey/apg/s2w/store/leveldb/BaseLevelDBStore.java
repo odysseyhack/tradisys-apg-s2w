@@ -32,25 +32,18 @@ public abstract class BaseLevelDBStore<T extends BasicIdentity> implements BaseS
     public long insert(T t) {
         long lastId = getLastId();
         long newId = lastId + 1;
-
         setLastId(newId);
-
         t.setId(newId);
-
         byte[] keyBytes = Keys.fromPrefixAndId(getTablePrefix(), newId);
         byte[] valueBytes = SerializationUtils.serialize(t);
-
         getDB().put(keyBytes, valueBytes);
-
         return newId;
     }
-
 
     @Override
     public void update(T t) {
         byte[] keyBytes = Keys.fromPrefixAndId(getTablePrefix(), t.getId());
         byte[] valueBytes = SerializationUtils.serialize(t);
-
         getDB().put(keyBytes, valueBytes);
     }
 
@@ -63,7 +56,6 @@ public abstract class BaseLevelDBStore<T extends BasicIdentity> implements BaseS
     @Override
     public Optional<T> findById(long id) {
         byte[] keyBytes = Keys.fromPrefixAndId(getTablePrefix(), id);
-
         return Optional.ofNullable(getDB().get(keyBytes))
                 .map(SerializationUtils::deserialize);
     }
@@ -72,14 +64,11 @@ public abstract class BaseLevelDBStore<T extends BasicIdentity> implements BaseS
     public List<T> findAll() {
         byte[] prefixBytes = Keys.fromPrefix(getTablePrefix());
         List<T> result = new ArrayList<>();
-
         try {
             Utils.iterateOverPrefix(getDB(), prefixBytes, entry -> {
                 try {
                     byte[] valueBytes = entry.getValue();
-
                     T t = SerializationUtils.deserialize(valueBytes);
-
                     result.add(t);
                 } catch (SerializationException e) {}
             });

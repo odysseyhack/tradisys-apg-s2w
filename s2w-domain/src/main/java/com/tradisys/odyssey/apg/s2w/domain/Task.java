@@ -19,22 +19,6 @@ public class Task extends BasicIdentity {
     public Task() {
     }
 
-    public Boolean getCustomerFulfilled() {
-        return isCustomerFulfilled;
-    }
-
-    public void setCustomerFulfilled(Boolean customerFulfilled) {
-        isCustomerFulfilled = customerFulfilled;
-    }
-
-    public Boolean getOrganizationConfirmed() {
-        return isOrganizationConfirmed;
-    }
-
-    public void setOrganizationConfirmed(Boolean organizationConfirmed) {
-        isOrganizationConfirmed = organizationConfirmed;
-    }
-
     public TaskStatus getStatus() {
         return status;
     }
@@ -55,24 +39,12 @@ public class Task extends BasicIdentity {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Double getTokenCost() {
         return tokenCost;
     }
 
-    public void setTokenCost(Double tokenCost) {
-        this.tokenCost = tokenCost;
-    }
-
     public Double getVotingPoints() {
         return votingPoints;
-    }
-
-    public void setVotingPoints(Double votingPoints) {
-        this.votingPoints = votingPoints;
     }
 
     public Organization getOrganization() {
@@ -96,12 +68,7 @@ public class Task extends BasicIdentity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Task task = (Task) o;
-        return Objects.equals(getName(), task.getName()) &&
-                Objects.equals(getDescription(), task.getDescription()) &&
-                Objects.equals(getTokenCost(), task.getTokenCost()) &&
-                Objects.equals(getVotingPoints(), task.getVotingPoints()) &&
-                Objects.equals(getOrganization(), task.getOrganization()) &&
-                getStatus() == task.getStatus();
+        return Objects.equals(getName(), task.getName()) && Objects.equals(getDescription(), task.getDescription()) && Objects.equals(getTokenCost(), task.getTokenCost()) && Objects.equals(getVotingPoints(), task.getVotingPoints()) && Objects.equals(getOrganization(), task.getOrganization()) && getStatus() == task.getStatus();
     }
 
     @Override
